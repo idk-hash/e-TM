@@ -29,6 +29,9 @@ private:
             using stringDirective = bool(T::*)(std::string);
         template <class T>
             using intDirective = void(T::*)(int);
+        template <class T>
+            using VintDirective = void(T::*)(std::vector<int>);
+
         std::vector<std::vector<vectorDirective<mqttClient>>> mqttDirectives;
         std::vector<std::vector<intDirective<manager>>> managerDirectives;
 

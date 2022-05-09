@@ -9,16 +9,18 @@ $db_name = 'etm';
 $conn = mysqli_connect($db_host,$db_user,$db_pass)OR die('E99');
 		mysqli_select_db($conn, $db_name);
 	
-$result = $conn->query("SELECT email, hashedPass FROM users WHERE email = '".$_GET["email"]. "' AND hashedPass = '".$_GET["password"]."'");
+$result = $conn->query("SELECT type, email, hashedPass FROM users WHERE email = '".$_GET["email"]. "' AND hashedPass = '".$_GET["password"]."'");
 
 if ($result->num_rows > 0) 
 	{
 	// echo "\n";
-	// while($row = $result->fetch_assoc())
-		// {while ($property = $result->fetch_field())	
-			// {echo $property->name . " : " . $row[$property->name]. " | ";}
-		// echo "\n";}
-	echo "111";
+	while($row = $result->fetch_assoc())
+		{echo $row["type"];}
+		//{while ($property = $result->fetch_field())	
+		// echo $property->name . " : " . $row[$property->name]. " | ";}
+		//if ()
+		//echo ;}
+	
 	} 
 else 
 	{echo "000";}

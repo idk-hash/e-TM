@@ -39,4 +39,7 @@ void signInPage::submitSignIn()
     if (passwordTextBox->text() == "" && emailTextBox->text() == "")    emit errorMessage("Please enter your credentials");
     else if (!emailRegex->match(emailTextBox->text()).hasMatch())       emit errorMessage("Please enter a valid email");
     else if (passwordTextBox->text() == "")                             emit errorMessage("Please enter your password");
-    else                                                                emit signInAttempt(process);}
+    else if (emailTextBox->text() == "1"){ };
+     //emit signInAttempt(process);
+
+    }

@@ -9,6 +9,13 @@
 #include <signUpPage.h>
 #include <signupform.h>
 #include <navigationtab.h>
+#include "cargonav.h"
+#include "cargomainpage.h"
+#include "drivermainpage.h"
+#include "drivernav.h"
+#include "companymainpage.h"
+#include "companynav.h"
+#include "companyviewprofile.h"
 
 #include <QPropertyAnimation>
 #include <QGraphicsOpacityEffect>
@@ -31,6 +38,9 @@ class welcomePage : public QWidget
         welcomePage(int w, int h);
         signInPage *signIn = new signInPage(this, QSize(wWidth, wHeight));
         signUpPage *signUp = new signUpPage(this, QSize(wWidth, wHeight));
+        cargoMainPage *cargoMain = new cargoMainPage(this);
+        driverMainPage *driverMain = new driverMainPage(this);
+        companyMainPage *companyMain = new companyMainPage(this);
         navigationTab *navTab;
         signUpForm *signupform;
         bool switchFlag = false;
@@ -40,6 +50,10 @@ class welcomePage : public QWidget
         void switchTab();
         void signInSuccess();
         void signingUp(int formID);
+        void signInAccount();
+        void logout();
+        void logout2();
+        void logout3();
 };
 
 #endif // WELCOMEPAGE_H

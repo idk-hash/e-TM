@@ -4,6 +4,17 @@ QT += \
     mqtt
 
 HEADERS += \
+    include/cargomainpage.h \
+    include/cargonav.h \
+    include/cargoplaceorder.h \
+    include/cargovieworders.h \
+    include/cargoviewprofile.h \
+    include/companymainpage.h \
+    include/companynav.h \
+    include/companyviewprofile.h \
+    include/drivermainpage.h \
+    include/drivernav.h \
+    include/driverviewprofile.h \
     include/mqttClient.h \
     include/signInPage.h \
     include/signUpPage.h \
@@ -16,6 +27,17 @@ HEADERS += \
     include/signupform.h
 
 SOURCES += \
+    src/cargomainpage.cpp \
+    src/cargonav.cpp \
+    src/cargoplaceorder.cpp \
+    src/cargovieworders.cpp \
+    src/cargoviewprofile.cpp \
+    src/companymainpage.cpp \
+    src/companynav.cpp \
+    src/companyviewprofile.cpp \
+    src/drivermainpage.cpp \
+    src/drivernav.cpp \
+    src/driverviewprofile.cpp \
     src/signupform.cpp \
     src/listtab.cpp \
     src/navigationtab.cpp \

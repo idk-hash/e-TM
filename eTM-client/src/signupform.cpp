@@ -1,4 +1,8 @@
 #include <signupform.h>
+#include <QDebug>
+#include <QString>
+#include <vector>
+#include <string>
 
 signUpForm::signUpForm(QWidget *widget, int formID, int w, int h)
     {wWidth = w;
@@ -54,7 +58,14 @@ signUpForm::signUpForm(QWidget *widget, int formID, int w, int h)
                   break;}
              case checkbox: break;
         }}
+
+      submit->setText("Submit");
+      submit->setStyleSheet("background-color: white;");
+       submit->setFixedWidth(100);
+        submit->setFixedHeight(40);
+      layout->addWidget(submit);
       layout->setContentsMargins(0,0,0,0);
+       layout->setAlignment(submit, Qt::AlignHCenter);
       groupBox->setStyleSheet("border: 0px solid black;");
       groupBox->setLayout(layout);
       scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -62,7 +73,31 @@ signUpForm::signUpForm(QWidget *widget, int formID, int w, int h)
       scrollArea->resize(w*23/40,h/2);
       scrollArea->setStyleSheet("background-color: transparent; border-width: 10px;");
       scrollArea->setFrameShape(QFrame::NoFrame);
-//      scrollArea->setFocusProxy(this);
+//    scrollArea->setFocusProxy(this);
       scrollArea->setWidget(groupBox);
     this->show();
+    connect(submit, &QPushButton::clicked, this, &signUpForm::submitForm);
     }
+
+void signUpForm::submitForm()
+{std::string text = "";
+    std::vector<std::string> fields  = {"010"};
+    for(int i = 0; i < layout->count()-1; i++)
+        {QWidget *widget = layout->itemAt(i)->widget();
+        if(widget != NULL)
+            {QLineEdit *aLineEdit = qobject_cast<QLineEdit *>(widget);
+            //qDebug() << aLineEdit->text();
+            text = aLineEdit->text().QString::toStdString();
+            fields.push_back(text);
+        }
+        else{
+            qDebug()  << "Please fill in all fields";
+            break;
+        }
+    }
+    int length = fields.size();
+    for (int i = 0; i < length; i++){
+         //qDebug() << QString::fromStdString(fields[i]);
+    }
+    Process process = {{'8','0','0'}, fields};
+}
