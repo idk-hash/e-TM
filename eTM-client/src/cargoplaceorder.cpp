@@ -48,23 +48,23 @@ void cargoPlaceOrder::submitOrder1(){
         qDebug() << "Source length too long";
         informationLabel->setText("Source length too long");
     }
-    else if (sourceTextBox->text() == NULL){
+    else if (sourceTextBox->text() == ""){
         qDebug() << "Please enter a source";
     }
     else if (destinationTextBox->text().length()>10){
         qDebug() << "Destination length too long";
     }
-    else if (destinationTextBox->text() == NULL){
+    else if (destinationTextBox->text() == ""){
         qDebug() << "Please enter a destination";
     }
     else if (heightTextBox->text().toInt() < 100 || heightTextBox->text().toInt() > 300){
         qDebug() << "Please enter a height between 100 and 300";
     }
-    sourceTextBox->setText(NULL);
-    destinationTextBox->setText(NULL);
-    heightTextBox->setText(NULL);
-    widthTextBox->setText(NULL);
-    depthTextBox->setText(NULL);
-    weightTextBox->setText(NULL);
+    sourceTextBox->setText("");
+    destinationTextBox->setText("");
+    heightTextBox->setText("");
+    widthTextBox->setText("");
+    depthTextBox->setText("");
+    weightTextBox->setText("");
 
 }

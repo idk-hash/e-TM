@@ -8,8 +8,10 @@ mqttClient::mqttClient(int *aID, int *cID)
 
 void mqttClient::init()
     {client = new QMqttClient;
-     client->setHostname("127.0.0.1");
-     client->setPort(1883);
+
+     client->setHostname(GET(placeholder_url));
+     client->setPort(18329);
+
      client->connectToHost();
      connect(client, &QMqttClient::connected, this, &mqttClient::firstHandshake);
      connect(client, &QMqttClient::messageReceived, this, &mqttClient::incomingRequest);
