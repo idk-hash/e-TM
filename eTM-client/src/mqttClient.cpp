@@ -8,7 +8,7 @@ mqttClient::mqttClient(int *aID, int *cID)
 
 void mqttClient::init()
     {client = new QMqttClient;
-     client->setHostname("127.0.0.1");
+     client->setHostname(GET);
      client->setPort(1883);
      client->connectToHost();
      connect(client, &QMqttClient::connected, this, &mqttClient::firstHandshake);
@@ -48,3 +48,11 @@ const Process mqttClient::requestToProcess(QString message)
      for(std::string &x : process.processParam)
      qDebug() << &x.front();
      return process;}
+
+QString mqttClient::GET(QString url)
+    {QNetworkAccessManager manager;
+     QNetworkReply *response = manager.get(QNetworkRequest(QUrl(url)));
+     QEventLoop event;
+     connect(response, &QNetworkReply::finished, &event, &QEventLoop::quit);
+     event.exec();
+     return response->readAll();}

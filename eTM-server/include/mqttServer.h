@@ -67,8 +67,6 @@
 #include <process.h>
 #include <QHostAddress>
 
-
-
 class mqttServer : public QObject
 {   Q_OBJECT
 
@@ -79,7 +77,6 @@ class mqttServer : public QObject
     private:
         const QString placeholder_url = "https://pastebin.com/raw/YjYEUC6K";
         QHostAddress serverAddress = QHostAddress::LocalHost;
-
         std::vector<clientDetails> *clients;
 
         QRegularExpression *requestRegex = new QRegularExpression("([0-9]+):([0-9]+):([0-9]{1,3}):(.*)");

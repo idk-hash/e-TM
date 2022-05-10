@@ -24,5 +24,3 @@ INCLUDEPATH += \
 OBJECTS_DIR = $$_PRO_FILE_PWD_/bin/
 DESTDIR = $$_PRO_FILE_PWD_/bin/
 
-FORMS += \
-    src/form.ui

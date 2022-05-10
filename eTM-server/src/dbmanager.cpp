@@ -1,5 +1,7 @@
 #include "dbmanager.h"
 
+
+
 DBmanager::DBmanager(std::vector<clientDetails> *clientList)
     {clients = clientList;}
 

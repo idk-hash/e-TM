@@ -28,6 +28,7 @@ class mqttClient : public QObject
 
         const QString placeholder_url = "https://pastebin.com/raw/YjYEUC6K";
         QHostAddress serverAddress = QHostAddress::LocalHost;
+        QString GET(QString url);
         const Process requestToProcess(QString message);
 
         QRegularExpression *requestRegex = new QRegularExpression("([0-9]{1,3}):(.*)");
