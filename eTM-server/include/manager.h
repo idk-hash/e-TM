@@ -22,6 +22,7 @@ class manager : public QObject
             using intDirective = void(T::*)(int, std::vector<std::string>);
         std::vector<std::vector<stringDirective<mqttServer>>> mqttDirectives;
         std::vector<std::vector<intDirective<DBmanager>>> dbDirectives;
+        std::vector<std::vector<intDirective<DBmanager>>> placeOrderQuery;
 
         std::vector<clientDetails> *clients = new std::vector<clientDetails>;
         QQueue<Process> *processQueue;

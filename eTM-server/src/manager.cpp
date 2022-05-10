@@ -5,7 +5,10 @@ manager::manager(QQueue<Process> *pQueue)
     {// DATA //
      processQueue = pQueue;
      mqttDirectives = {{&mqttServer::sendRequest}};
-     dbDirectives = {{&DBmanager::authQuery}};}
+     dbDirectives = {{&DBmanager::authQuery}};
+     placeOrderQuery = {{&DBmanager::orderQuery}};
+
+}
 
 void manager::treatProcess()
     {queueFlag = true;
