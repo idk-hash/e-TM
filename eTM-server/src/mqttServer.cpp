@@ -7,8 +7,8 @@ mqttServer::mqttServer(std::vector<clientDetails> *clientList)
 
 void mqttServer::init()
     {client = new QMqttClient;
-     client->setHostname("127.0.0.1");
-     client->setPort(1883);
+     client->setHostname("4.tcp.ngrok.io");
+     client->setPort(18329);
      client->connectToHost();
      connect(client, &QMqttClient::connected, this, &mqttServer::brokerHandshake);
      connect(client, &QMqttClient::messageReceived, this, &mqttServer::incomingRequest);}
