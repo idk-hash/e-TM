@@ -1,4 +1,5 @@
 #include <signupform.h>
+
 #include <QDebug>
 #include <QString>
 #include <vector>
@@ -76,10 +77,10 @@ signUpForm::signUpForm(QWidget *widget, int formID, int w, int h)
 //    scrollArea->setFocusProxy(this);
       scrollArea->setWidget(groupBox);
     this->show();
-    connect(submit, &QPushButton::clicked, this, &signUpForm::submitForm);
+    //connect(submit, &QPushButton::clicked, this, &signUpForm::submitForm);
     }
 
-void signUpForm::submitForm()
+/*void signUpForm::submitForm()
 {std::string text = "";
     std::vector<std::string> fields  = {"010"};
     for(int i = 0; i < layout->count()-1; i++)
@@ -100,4 +101,6 @@ void signUpForm::submitForm()
          //qDebug() << QString::fromStdString(fields[i]);
     }
     Process process = {{'8','0','0'}, fields};
+
 }
+*/

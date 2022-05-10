@@ -42,11 +42,13 @@ class welcomePage : public QWidget
         driverMainPage *driverMain = new driverMainPage(this);
         companyMainPage *companyMain = new companyMainPage(this);
         navigationTab *navTab;
-        signUpForm *signupform;
+        signUpForm *signupform2;
+        //= new signUpForm(this, 1, wWidth, wHeight);
         bool switchFlag = false;
 
     public slots:
         void errorMessage(QString error);
+       // void submitForm();
         void switchTab();
         void signInSuccess();
         void signingUp(int formID);
@@ -54,6 +56,7 @@ class welcomePage : public QWidget
         void logout();
         void logout2();
         void logout3();
+        void createAccount();
 };
 
 #endif // WELCOMEPAGE_H

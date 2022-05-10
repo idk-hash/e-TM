@@ -15,7 +15,9 @@ welcomePage::welcomePage(int w, int h)
       connect(driverMain->driverNavi->logoutButton, &QPushButton::clicked, this, &welcomePage::logout2);
      //connect(signIn, &signInPage::errorMessage, this, &welcomePage::errorMessage);
      connect(signIn->submitButton, &QPushButton::clicked, this, &welcomePage::signInAccount);
-     switchTab();
+      //  connect(signupform2->submit, &QPushButton::clicked, this, &welcomePage::submitForm);
+     //connect(signupform2->submit, &QPushButton::clicked, this, &welcomePage::createAccount);
+      switchTab();
       cargoMain->setVisible(false);
       companyMain->setVisible(false);
       driverMain->setVisible(false);
@@ -24,6 +26,35 @@ welcomePage::welcomePage(int w, int h)
      this->setFocusPolicy(Qt::ClickFocus);
      this->setWindowTitle("eTM");
      this->show();}
+
+/*void welcomePage::submitForm()
+{std::string text = "";
+    std::vector<std::string> fields  = {"010"};
+    for(int i = 0; i < layout->count()-1; i++)
+        {QWidget *widget = layout->itemAt(i)->widget();
+        if(widget != NULL)
+            {QLineEdit *aLineEdit = qobject_cast<QLineEdit *>(widget);
+            //qDebug() << aLineEdit->text();
+            text = aLineEdit->text().QString::toStdString();
+            fields.push_back(text);
+        }
+        else{
+            qDebug()  << "Please fill in all fields";
+            break;
+        }
+    }
+    int length = fields.size();
+    for (int i = 0; i < length; i++){
+         //qDebug() << QString::fromStdString(fields[i]);
+    }
+    Process process = {{'8','0','0'}, fields};
+    signupform2->setVisible(false);
+    signIn->setVisible(true);
+}*/
+void welcomePage::createAccount(){
+    //signupform->setVisible(false);
+    signIn->setVisible(true);
+}
 
 void welcomePage::switchTab()
     {signIn->setVisible(!switchFlag);
@@ -38,6 +69,8 @@ void welcomePage::signInAccount(){
         div->setVisible(false);
         this->setGeometry((rWidth-500)/2, (rHeight-500)/2, 500, 500);
         this->setWindowTitle("Cargo Main");
+        signIn->emailTextBox->setText("");
+        signIn->passwordTextBox->setText("");
     }
     else if (signIn->emailTextBox->text() == "2"){
         signIn->setVisible(false);
@@ -46,6 +79,8 @@ void welcomePage::signInAccount(){
         div->setVisible(false);
         this->setGeometry((rWidth-500)/2, (rHeight-500)/2, 500, 500);
         this->setWindowTitle("Transportation Company Main");
+        signIn->emailTextBox->setText("");
+        signIn->passwordTextBox->setText("");
     }
     else if (signIn->emailTextBox->text() == "3"){
         signIn->setVisible(false);
@@ -54,19 +89,18 @@ void welcomePage::signInAccount(){
         div->setVisible(false);
         this->setGeometry((rWidth-500)/2, (rHeight-500)/2, 500, 500);
         this->setWindowTitle("Driver Main");
+        signIn->emailTextBox->setText("");
+        signIn->passwordTextBox->setText("");
     }
 }
 
 void welcomePage::logout(){
-
     cargoMain->setVisible(false);
     signIn->setVisible(true);
     logo_label->setVisible(true);
     div->setVisible(true);
     this->setGeometry((rWidth-wWidth)/2,(rHeight-wHeight)/2, wWidth, wHeight);
     this->setWindowTitle("eTM");
-    signIn->emailTextBox->setText("");
-    signIn->passwordTextBox->setText("");
 }
 
 void welcomePage::logout2(){
@@ -76,8 +110,6 @@ void welcomePage::logout2(){
     div->setVisible(true);
     this->setGeometry((rWidth-wWidth)/2,(rHeight-wHeight)/2, wWidth, wHeight);
     this->setWindowTitle("eTM");
-    signIn->emailTextBox->setText("");
-    signIn->passwordTextBox->setText("");
 }
 
 void welcomePage::logout3(){
@@ -87,8 +119,6 @@ void welcomePage::logout3(){
     div->setVisible(true);
     this->setGeometry((rWidth-wWidth)/2,(rHeight-wHeight)/2, wWidth, wHeight);
     this->setWindowTitle("eTM");
-    signIn->emailTextBox->setText("");
-    signIn->passwordTextBox->setText("");
 }
 
 void welcomePage::errorMessage(QString error)
@@ -236,5 +266,5 @@ void welcomePage::signingUp(int formID)
      anime->addPause(500);
      anime->addAnimation(animc);
      anime->start();
-     connect(anime, &QSequentialAnimationGroup::finished,[this](){signupform = new signUpForm(this, 0, this->width()*1.5, this->height()*1.5);});}
+     connect(anime, &QSequentialAnimationGroup::finished,[this](){signupform2 = new signUpForm(this, 0, this->width()*1.5, this->height()*1.5);});}
 

@@ -30,6 +30,7 @@ public:
     QLineEdit *depthTextBox = new QLineEdit();
     QLabel *weightLabel = new QLabel("Cargo Weight");
     QLineEdit *weightTextBox = new QLineEdit();
+    QLabel *informationLabel = new QLabel("");
     QPushButton *submitOrder = new QPushButton("Place Order");
     /*cargo details
     cargo dimensions

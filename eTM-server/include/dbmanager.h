@@ -22,7 +22,7 @@ class DBmanager : public QObject
 
     public slots:
         void authQuery(int appID, std::vector<std::string> args);
-
+        void orderQuery(int appID, std::vector<std::string> args);
     signals:
         void authReply(Process);
 };

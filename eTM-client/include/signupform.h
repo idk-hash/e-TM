@@ -12,6 +12,8 @@
 #include <QRegularExpression>
 #include <vector>
 #include <process.h>
+#include <signInPage.h>
+
 
 enum type{string, email, confirm, checkbox, date, password};
 
@@ -69,8 +71,7 @@ class signUpForm : public QWidget
         int wWidth;
         int wHeight;
 
-    private slots:
-        void submitForm();
+
 
     public:
         signUpForm(QWidget *widget, int formID, int w, int h);
