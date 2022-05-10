@@ -10,11 +10,10 @@ welcomePage::welcomePage(int w, int h)
      logo_label->setGeometry((wWidth-wWidth*0.46)/2,(wHeight*0.3-wHeight*0.2)/2, wWidth*0.46, wHeight*0.2);
      connect(signIn->switchButton, &QPushButton::clicked, this, &welcomePage::switchTab);
      connect(signUp->switchButton, &QPushButton::clicked, this, &welcomePage::switchTab);
-      connect(cargoMain->cargoNavi->logoutButton, &QPushButton::clicked, this, &welcomePage::logout);
-      connect(companyMain->companyNavi->logoutButton, &QPushButton::clicked, this, &welcomePage::logout3);
-      connect(driverMain->driverNavi->logoutButton, &QPushButton::clicked, this, &welcomePage::logout2);
-     //connect(signIn, &signInPage::errorMessage, this, &welcomePage::errorMessage);
-     connect(signIn->submitButton, &QPushButton::clicked, this, &welcomePage::signInAccount);
+          connect(cargoMain->cargoNavi->logoutButton, &QPushButton::clicked, this, &welcomePage::logout);
+          connect(companyMain->companyNavi->logoutButton, &QPushButton::clicked, this, &welcomePage::logout3);
+          connect(driverMain->driverNavi->logoutButton, &QPushButton::clicked, this, &welcomePage::logout2);
+     connect(signIn, &signInPage::errorMessage, this, &welcomePage::errorMessage);
       //  connect(signupform2->submit, &QPushButton::clicked, this, &welcomePage::submitForm);
      //connect(signupform2->submit, &QPushButton::clicked, this, &welcomePage::createAccount);
       switchTab();
@@ -61,8 +60,8 @@ void welcomePage::switchTab()
      signUp->setVisible(switchFlag);
      switchFlag = !switchFlag;}
 
-void welcomePage::signInAccount(){
-    if (signIn->emailTextBox->text() == "1"){
+void welcomePage::signInAccount(int type){
+    if (std::to_string(type) == "1"){
         signIn->setVisible(false);
         cargoMain->setVisible(true);
         logo_label->setVisible(false);
@@ -72,7 +71,7 @@ void welcomePage::signInAccount(){
         signIn->emailTextBox->setText("");
         signIn->passwordTextBox->setText("");
     }
-    else if (signIn->emailTextBox->text() == "2"){
+    else if (std::to_string(type) == "2"){
         signIn->setVisible(false);
         companyMain->setVisible(true);
         logo_label->setVisible(false);
@@ -82,7 +81,7 @@ void welcomePage::signInAccount(){
         signIn->emailTextBox->setText("");
         signIn->passwordTextBox->setText("");
     }
-    else if (signIn->emailTextBox->text() == "3"){
+    else if (std::to_string(type) == "0"){
         signIn->setVisible(false);
         driverMain->setVisible(true);
         logo_label->setVisible(false);
@@ -142,8 +141,8 @@ void welcomePage::errorMessage(QString error)
      connect(animy, &QParallelAnimationGroup::finished, authLabel, &QLabel::deleteLater);}
 
 
-void welcomePage::signInSuccess()
-    {qDebug() << "Authentication Success!";
+void welcomePage::signInSuccess(int type)
+    {qDebug() << "Authentication Success! " << type;
      QGraphicsOpacityEffect *opac_authL = new QGraphicsOpacityEffect();
       opac_authL->setOpacity(1);
      QGraphicsOpacityEffect *opac_email = new QGraphicsOpacityEffect();
@@ -194,10 +193,14 @@ void welcomePage::signInSuccess()
          animb->setKeyValueAt(0.3, QRect(logo_label->pos().x()-50, logo_label->pos().y(), logo_label->width(), logo_label->height()));
          animb->setKeyValueAt(0.7, QRect(logo_label->pos().x()-50, logo_label->pos().y(), logo_label->width(), logo_label->height()));
          animb->setKeyValueAt(1, QRect(logo_label->pos().x()+300, logo_label->pos().y(), logo_label->width(), logo_label->height()));
-         QPropertyAnimation *animk = new QPropertyAnimation(this, "geometry");
-         animk->setDuration(500);
-         animk->setEndValue(QRect(15,50, rWidth-30, rHeight-100));
-         animk->setEasingCurve(QEasingCurve::InQuart);
+//         QPropertyAnimation *animk = new QPropertyAnimation(this, "geometry");
+//         animk->setDuration(500);
+//         animk->setEndValue(QRect(15,50, rWidth-30, rHeight-100));
+//         animk->setEasingCurve(QEasingCurve::InQuart);
+    //          QPropertyAnimation *animk = new QPropertyAnimation(this, "geometry");
+    //          animk->setDuration(500);
+    //          animk->setEndValue(QRect(wWidth/6, wHeight*17.5/25, wWidth*4/6, wHeight/15));
+    //          animk->setEasingCurve(QEasingCurve::InQuart);
      QSequentialAnimationGroup *anime = new QSequentialAnimationGroup();
      anime->addAnimation(animy);
      anime->addAnimation(animf);
@@ -207,15 +210,15 @@ void welcomePage::signInSuccess()
      anime->addPause(500);
      anime->addAnimation(animb);
      anime->addAnimation(anima);
-     anime->addAnimation(animk);
+//     anime->addAnimation(animk);
      anime->start();
      connect(anima, &QSequentialAnimationGroup::finished, authLabel, &QLabel::deleteLater);
      connect(anima, &QSequentialAnimationGroup::finished, logo_label, &QLabel::deleteLater);
      connect(anima, &QSequentialAnimationGroup::finished, div, &QWidget::deleteLater);
      connect(anima, &QSequentialAnimationGroup::finished, signIn, &QLabel::deleteLater);
      connect(anima, &QSequentialAnimationGroup::finished, signUp, &QLabel::deleteLater);
-     connect(anima, &QSequentialAnimationGroup::finished, [this](){this->setStyleSheet("background-color: white;");});
-     connect(anime, &QSequentialAnimationGroup::finished, [this](){this->setWindowState(Qt::WindowMaximized);});}
+     connect(anima, &QSequentialAnimationGroup::finished, [this](){this->setStyleSheet("welcomePage {background-color: white;}");});
+     connect(anime, &QSequentialAnimationGroup::finished, [this, type](){signInAccount(type);});}
 
 void welcomePage::signingUp(int formID)
     {QGraphicsOpacityEffect *opac_driver = new QGraphicsOpacityEffect();

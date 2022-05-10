@@ -31,16 +31,17 @@ void manager::treatProcess()
                     // code 8 : MQTT Directives
                  case 8: (mqtt->*mqttDirectives[extraCode][processCode])(currentProcess.processParam); break;
                     // code 9 : Manager Directives
-                 case 9: (this->*managerDirectives[extraCode][processCode])(std::stoi(currentProcess.processParam.at(0))); break;}}
+                 case 9: (this->*managerDirectives[extraCode][processCode])(currentProcess.processParam); break;}}
      queueFlag = false;
      emit pQueueEmpty();}
 
-void manager::setAppID(int aID)
-    {appID = aID;}
+bool manager::setAppID(std::vector<std::string> args)
+    {appID = std::stoi(args[0]); return true;}
 
-void manager::authValidated(int cID)
-    {clientID = cID;
-     emit signInSuccess();}
+bool manager::authValidated(std::vector<std::string> args)
+    {clientID = std::stoi(args[0]);
+     emit signInSuccess(std::stoi(args[1]));
+     return true;}
 
-void manager::authFailed(int empty)
-    {emit signInFail("Invalid credentials");}
+bool manager::authFailed(std::vector<std::string> args)
+    {emit signInFail("Invalid credentials"); return true;}

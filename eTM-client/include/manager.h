@@ -33,7 +33,7 @@ private:
             using VintDirective = void(T::*)(std::vector<int>);
 
         std::vector<std::vector<vectorDirective<mqttClient>>> mqttDirectives;
-        std::vector<std::vector<intDirective<manager>>> managerDirectives;
+        std::vector<std::vector<vectorDirective<manager>>> managerDirectives;
 
         QQueue<Process> *processQueue;
 
@@ -51,13 +51,13 @@ private:
     signals:
         void pQueueEmpty();
         void signInFail(QString error);
-        void signInSuccess();
+        void signInSuccess(int type);
 
     public slots:
         void treatProcess();
-        void setAppID(int aID);
-        void authValidated(int cID);
-        void authFailed(int empty);
+        bool setAppID(std::vector<std::string> args);
+        bool authValidated(std::vector<std::string> args);
+        bool authFailed(std::vector<std::string> args);
 
 };
 #endif // MANAGER_H

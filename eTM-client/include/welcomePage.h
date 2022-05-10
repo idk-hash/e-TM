@@ -50,9 +50,9 @@ class welcomePage : public QWidget
         void errorMessage(QString error);
        // void submitForm();
         void switchTab();
-        void signInSuccess();
+        void signInSuccess(int type);
         void signingUp(int formID);
-        void signInAccount();
+        void signInAccount(int type);
         void logout();
         void logout2();
         void logout3();
